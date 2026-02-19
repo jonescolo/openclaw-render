@@ -1,6 +1,19 @@
-FROM nvidia/openhands:latest
+FROM python:3.10-slim
 
-# Expose the default OpenHands port
+# Install system dependencies
+RUN apt-get update && apt-get install -y git build-essential
+
+# Create app directory
+WORKDIR /app
+
+# Clone OpenHands
+RUN git clone https://github.com/All-Hands-AI/OpenHands.git .
+
+# Install OpenHands
+RUN pip install --upgrade pip
+RUN pip install -e .
+
+# Expose OpenHands port
 EXPOSE 3000
 
 # Start OpenHands
