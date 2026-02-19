@@ -1,16 +1,7 @@
-FROM node:20
+FROM nvidia/openhands:latest
 
-WORKDIR /app
-
-# Install git
-RUN apt-get update && apt-get install -y git
-
-# Clone OpenClaw from GitHub
-RUN git clone https://github.com/OpenClawHQ/openclaw.git .
-
-# Install dependencies
-RUN npm install
-
+# Expose the default OpenHands port
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Start OpenHands
+CMD ["openhands", "start", "--host", "0.0.0.0", "--port", "3000"]
