@@ -1,4 +1,7 @@
-FROM ghcr.io/openclawhq/openclaw:latest
+FROM node:20
+
+# Install OpenClaw globally
+RUN npm install -g openclaw
 
 # Expose the default OpenClaw port
 EXPOSE 3000
