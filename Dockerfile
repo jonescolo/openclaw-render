@@ -1,10 +1,13 @@
 FROM node:20
 
-# Install OpenClaw globally
-RUN npm install -g openclaw
+# Create app directory
+WORKDIR /app
+
+# Install OpenClaw locally (not global)
+RUN npm install openclaw
 
 # Expose the default OpenClaw port
 EXPOSE 3000
 
-# Start OpenClaw using npx (guarantees correct path)
-CMD ["npx", "openclaw", "start"]
+# Start OpenClaw using the local binary
+CMD ["./node_modules/.bin/openclaw", "start"]
